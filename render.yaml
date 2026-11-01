@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: risk-checker
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: "cd frontend && npm install && npm run build && cd .. && pip install -r backend/requirements.txt"
+    startCommand: "gunicorn backend.app:app"
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
